@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure OpenAI Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .response-area {
+            min-height: 200px;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        /* Markdown Styles */
+        .response-area h1, .response-area h2, .response-area h3, .response-area h4, .response-area h5, .response-area h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: #333;
+        }
+        .response-area p {
+            margin-bottom: 1em;
+            line-height: 1.6;
+        }
+        .response-area code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .response-area pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .response-area pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .response-area ul, .response-area ol {
+            margin-bottom: 1em;
+            padding-left: 2em;
+        }
+        .response-area blockquote {
+            border-left: 4px solid #ddd;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        .response-area table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+        .response-area th, .response-area td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .response-area th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <h2 class="text-center mb-4">Azure OpenAI Chat Interface</h2>
+            <form method="POST" action="{{ url_for('chat') }}">
+                <div class="mb-3">
+                    <label for="user_input" class="form-label">Your Question:</label>
+                    <textarea class="form-control" id="user_input" name="user_input" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+            {% if response %}
+            <div class="response-area">
+                <h5>Response:</h5>
+                <div class="markdown-content">
+                    {{ response | safe }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
